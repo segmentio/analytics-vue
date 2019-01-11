@@ -1,2 +1,4 @@
 # vue-analytics
-Quickstart: Analytics.js + Vue.js
+
+This is a blank template for vue-analytics
+
