@@ -1,10 +1,16 @@
 {
-  "name": "vue-analytics",
+  "name": "analytics.js-vue-quickstart",
+  "description": "Quickstart guide for Analytics.js + Vue.js",
   "version": "1.0.0",
-  "description": "Vue App with Analytics.js",
   "contributors": [
     "William Grosset (https://williamgrosset.com)"
   ],
+  "keywords": [
+    "segment",
+    "analytics",
+    "vue"
+  ],
+  "repository": "segmentio/analytics.js-vue-quickstart",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
