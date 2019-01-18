@@ -1,0 +1,11 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/analytics.js-vue-quickstart
+    docker:
+      - image: circleci/node:8.11
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run lint 
+      - run: npm run build
