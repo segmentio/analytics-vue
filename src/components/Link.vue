@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     trackClickEvent () {
-      analytics.track('Clicked Learn Vue Link') 
+      window.analytics.track('Clicked Learn Vue Link') 
     }
   }
 }
