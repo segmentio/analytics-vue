@@ -17,7 +17,7 @@ Installing Segment is easy, just paste this snippet into the head of your site:
 
 When you paste it, you'll need to replace `YOUR_WRITE_KEY` with your Segment project's <b>Write Key</b>, which you can find in your project setup guide or settings.
 
-Now the `analytics` object is loaded and available to use throughout your app!
+Now `window.analytics` is loaded and available to use throughout your app!
 
 ### 🔍 Step 2: Identify Users
 The `identify` method is how you tell Segment who the current user is. It includes a unique User ID and any optional traits you know about them. You can read more about it in the <a href="https://segment.com/docs/sources/website/analytics.js/#identify">identify reference</a>.
@@ -27,7 +27,7 @@ The `identify` method is how you tell Segment who the current user is. It includ
 Here's what a basic call to `identify` might look like:
 
 ```javascript
-analytics.identify('f4ca124298', {
+window.analytics.identify('f4ca124298', {
   name: 'Michael Bolton',
   email: 'mbolton@initech.com'
 });
@@ -41,7 +41,7 @@ The `track` method is how you tell Segment about which actions your users are pe
 Here's what a call to `track` might look like when a user bookmarks an article:
 
 ```javascript
-analytics.track('Article Bookmarked', {
+window.analytics.track('Article Bookmarked', {
   title: 'Snow Fall',
   subtitle: 'The Avalanche at Tunnel Creek',
   author: 'John Branch'
