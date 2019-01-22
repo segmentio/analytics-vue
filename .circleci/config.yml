@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/analytics.js-vue-quickstart
+    working_directory: ~/analytics-vue
     docker:
       - image: circleci/node:8.11
     steps:
