@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <h1>Welcome to Your Vue.js App</h1>
-    <a
-      href="https://vuejs.org"
-      target="_blank"
-      v-on:click="trackClickEvent"
-     >
-      {{ msg }}
-    </a>
-  </div>
+  <a
+    href="https://vuejs.org"
+    target="_blank"
+    v-on:click="trackClickEvent"
+   >
+    {{ msg }}
+  </a>
 </template>
 
 <script>
 export default {
+  name: 'Link',
   data () {
     return {
       msg: 'Learn Vue'
