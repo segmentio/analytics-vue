@@ -6,6 +6,9 @@
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+  mounted () {
+    window.analytics.page('Home')
+  }
 }
 </script>
