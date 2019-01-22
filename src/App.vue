@@ -26,12 +26,22 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin: 140px;
   color: #2c3e50;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 50%;
 }
 
 #app > p {
   font-size: 28px;
+}
+
+#app > img {
+  padding: 15px 0;
 }
 
 .router-link {
