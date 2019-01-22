@@ -6,7 +6,6 @@ import About from '@/components/About'
 Vue.use(Router)
 
 export default new Router({
-  base: '/',
   routes: [
     {
       path: '/',
