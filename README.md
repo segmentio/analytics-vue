@@ -23,24 +23,23 @@ Installing Segment is easy, just paste this snippet into the head of your site. 
 Now `window.analytics` is loaded and available to use throughout your app!
 
 ###  Single-Page Application
-Clicking a link or a new tab will not reload the webpage in an SPA. Therefore, using `analytics.page()` in `index.html` is not ideal and we need to simulate a page load. However, we can achieve `page` calls with the use of [react-router](https://reacttraining.com/react-router) and React's lifecycle methods.
+Clicking a link or a new tab will not reload the webpage in an SPA. Therefore, using `analytics.page()` in `index.html` is not ideal and we need to simulate a page load. However, we can achieve `page` calls with the use of [vue-router](https://router.vuejs.org) and Vue's lifecycle hooks.
 
-If we seperate our pages into their own components and allow the [`<Route />`](https://reacttraining.com/react-router/core/api/Route) component to handle when our pages render, then we can use `componentDidMount` to invoke our `page` calls:
+If we seperate our pages into their own components and allow the [`<router-view>`](https://router.vuejs.org/api/#router-view) component to handle when our pages render, then we can use `mounted` lifecycle hook to invoke our `page` calls:
 
 ```javascript
-export default class HomePage extends Component {
-  componentDidMount() {
-    window.analytics.page('Home');
-  }
+<template>
+  <h1>Home</h1>
+</template>
 
-  render() {
-    return (
-      <h2>
-        Home
-      </h2>
-    );
+<script>
+export default {
+  name: 'Home',
+  mounted() {
+    window.analytics.page('Home')
   }
 }
+</script>
 ```
 
 ##  🔍 Step 2: Identify Users
@@ -60,36 +59,34 @@ window.analytics.identify('f4ca124298', {
 That's identifying Michael by his unique User ID and labeling him with `name` and `email` traits.
 
 ### Event Handler
-If you're using a form to handle user signups or logins, the `onSubmit` handler is a great use-case to call `identify`:
+If you're using a form to handle user signups or logins, the `v-on:submit` handler is a great use-case to call `identify`:
 ```javascript
-export default class IdentifyForm extends Component {
-  state = {
+<template>
+  <form v-on:submit="onIdentifySubmit">
+    <input v-model="name" type="text" />
+    <input v-model="email" type="text" /> 
+    <input type="submit" />
+  </form>
+</template>
+
+<script>
+export default {
+  name: 'Form',
+  data: {
     name: '',
     email: ''
-  };
-
-  handleChange(event) {
-    this.setState({ value: event.target.value });
+  },
+  methods: {
+    onIdentifySubmit() {
+      // Add your own unique ID here or we will automatically assign an anonymousID
+      window.analytics.identify({
+        name: this.name,
+        email: this.email
+      })
+    }
   }
-
-  onIdentifySubmit() {
-    // Add your own unique ID here or we will automatically assign an anonymousID
-    window.analytics.identify({
-      name: this.state.name,
-      email: this.state.email
-    });
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.onIdentifySubmit}>
-        <input value={this.state.name} type="text" onChange={this.handleChange} />
-        <input value={this.state.email} type="text" onChange={this.handleChange} /> 
-        <input type="submit" />
-      </form>
-    )
- }
 }
+</script>
 ```
 
 ## ⏰ Step 3: Track Actions
@@ -108,90 +105,50 @@ window.analytics.track('Article Bookmarked', {
 That's telling us that your user just triggered the <b>Article Bookmarked</b> event and bookmarked the `Snow Fall` article authored by `John Branch`. Properties can be anything you want to associate to an event when it is tracked.
 
 ### Event Handler
-[Event handlers](https://reactjs.org/docs/handling-events.html) are oftenly used to call `track`, such as: `onClick`, `onSubmit`, `onMouseOver`:
+[Event handlers](https://vuejs.org/v2/guide/events.html) are oftenly used to call `track`, such as: `v-on:click`, `v-on:submit`, `v-on:mouseover`:
 
 ```javascript
-export default class Button extends Component {
-  trackClickEvent() {
-    window.analytics.track('Clicked Button');
-  }
+<template>
+  <button v-on:click="trackClickEvent">
+    {{ msg }} 
+  </button>
+</template>
 
-  render() {
-    return (
-      <button onClick={this.trackClickEvent}>
-        Button 
-      </button>
-    );
+<script>
+export default {
+  name: 'Button',
+  data: {
+    return {
+      msg: 'Button'
+    }
+  },
+  methods: {
+    trackClickEvent() {
+      window.analytics.track('Clicked Button');
+    }
   }
 }
+</script>
 ```
 
-### Lifecyle Methods
-[Lifecycle methods](https://reactjs.org/docs/react-component.html#the-component-lifecycle) are also great use cases for tracking particular events. For example, if you want to track components that are conditionally rendered from a parent component and that are outside the scope of a `page` call, then you can use `componentDidMount` to trigger a `track` event:
+### Lifecyle Hook
+[Lifecycle hooks](https://vuejs.org/v2/api/#Options-Lifecycle-Hooks) are also great use cases for tracking particular events. For example, if you want to track components that are conditionally rendered from a parent component and that are outside the scope of a `page` call, then you can use `mounted` to trigger a `track` event:
 
 ```javascript
-export default class Panel extends Component {
-  componentDidMount() {
+<template>
+  <div className="panel">
+    Panel
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Home',
+  mounted() {
     window.analytics.track('Viewed Panel');
   }
-
-  render() {
-    return (
-      <div className="panel">
-        Panel
-      </div>
-    )
-  }
-};
-```
-
-### Error Boundary
-Using a higher-order component to wrap around children components can be useful for catching errors. Usually when an error occurs, we will log the error with `track` and gracefully display the appropriate child component:
-
-```javascript
-export default class ErrorBoundary extends Component {
-  static propTypes = {
-    /**
-     * Fallback component to display when uncaught exceptions occur in a component tree:
-     * function({ error: PropTypes.object, errorInfo: PropTypes.object }): PropTypes.node
-     */
-    errorComponent: PropTypes.func
-  };
-
-  static defaultProps = {
-    errorComponent: () => null
-  };
-
-  state = {
-    error: null,
-    errorInfo: null
-  };
-
-  componentDidCatch(error, errorInfo) {
-    this.setState({
-      error,
-      errorInfo
-    });
-
-    window.analytics.track('JavaScript Error', {
-      error: this.state.error,
-      errorInfo: this.state.errorInfo
-    });
-  }
-
-  render() {
-    const ErrorComponent = this.props.errorComponent;
-
-    return this.state.error ? (
-      <ErrorComponent
-        error={this.state.error}
-        errorInfo={this.state.errorInfo}
-      />
-    ) : (
-      this.props.children
-    );
-  }
 }
+</script>
 ```
 
 Once you've added a few track calls, **you're done**! You successfully installed `Analytics.js` tracking. Now you're ready to turn on any destination you fancy from our interface. 🎉
@@ -218,6 +175,6 @@ npm start
     + Track event: `Clicked Learn Vue Link`
 
 # 🤔 What's Next?
-Interested in allowing your visitors to control and customize their tracking preferences on a website? Integrate our [consent-manager](https://github.com/segmentio/consent-manager), which is imported via the snippet and uses our pre-built React component under the hood.
+Check out our full <a href="https://segment.com/docs/sources/website/analytics.js/">Analytics.js reference</a> to see what else is possible, or read about the <a href="https://segment.com/docs/sources/server/http/">Tracking API methods</a> to get a sense for the bigger picture.
 
-Check out our full <a href="https://segment.com/docs/sources/website/analytics.js/">Analytics.js reference</a> to see what else is possible, or read about the <a href="https://segment.com/docs/sources/server/http/">Tracking API methods</a> to get a sense for the bigger picture. If you have any questions, or see anywhere we can improve our documentation, <a href="https://segment.com/contact/">please let us know</a>!
+If you have any questions, or see anywhere we can improve our documentation, <a href="https://segment.com/contact/">please let us know</a>!
