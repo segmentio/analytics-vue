@@ -1,6 +1,6 @@
 {
-  "name": "analytics.js-vue-quickstart",
-  "description": "Quickstart guide for Analytics.js + Vue.js",
+  "name": "analytics-vue",
+  "description": "The hassle-free way to integrate analytics into your Vue application.",
   "version": "1.0.0",
   "contributors": [
     "William Grosset (https://williamgrosset.com)"
@@ -10,7 +10,7 @@
     "analytics",
     "vue"
   ],
-  "repository": "segmentio/analytics.js-vue-quickstart",
+  "repository": "segmentio/analytics-vue",
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
