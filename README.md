@@ -29,14 +29,16 @@ If we seperate our pages into their own components and allow the [`<router-view>
 
 ```javascript
 <template>
-  <h1>Home</h1>
+  <h1>
+    Home page.
+  </h1>
 </template>
 
 <script>
 export default {
   name: 'Home',
   mounted() {
-    window.analytics.page('Home')
+    window.analytics.page('Home');
   }
 }
 </script>
@@ -63,8 +65,8 @@ If you're using a form to handle user signups or logins, the `v-on:submit` handl
 ```javascript
 <template>
   <form v-on:submit="onIdentifySubmit">
-    <input v-model="name" type="text" />
-    <input v-model="email" type="text" /> 
+    <input name="name" type="text" v-model="name" />
+    <input name="email" type="text" v-model="email" /> 
     <input type="submit" />
   </form>
 </template>
@@ -105,7 +107,7 @@ window.analytics.track('Article Bookmarked', {
 That's telling us that your user just triggered the <b>Article Bookmarked</b> event and bookmarked the `Snow Fall` article authored by `John Branch`. Properties can be anything you want to associate to an event when it is tracked.
 
 ### Event Handler
-[Event handlers](https://vuejs.org/v2/guide/events.html) are oftenly used to call `track`, such as: `v-on:click`, `v-on:submit`, `v-on:mouseover`:
+[Event handlers](https://vuejs.org/v2/guide/events.html) are oftenly used to call `track`, such as: `v-on:click`, `v-on:submit`, `v-on:mouseover`, `etc.`:
 
 ```javascript
 <template>
@@ -116,15 +118,15 @@ That's telling us that your user just triggered the <b>Article Bookmarked</b> ev
 
 <script>
 export default {
-  name: 'Button',
+  name: 'Signup',
   data: {
     return {
-      msg: 'Button'
+      msg: 'Signup with Segment today!'
     }
   },
   methods: {
     trackClickEvent() {
-      window.analytics.track('Clicked Button');
+      window.analytics.track('User Signup');
     }
   }
 }
@@ -136,16 +138,16 @@ export default {
 
 ```javascript
 <template>
-  <div className="panel">
-    Panel
-  </div>
+  <video autoplay>
+    <source src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" type="video/mp4">
+  </video>
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: 'VideoPlayer',
   mounted() {
-    window.analytics.track('Viewed Panel');
+    window.analytics.track('Video Watched');
   }
 }
 </script>
