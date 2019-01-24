@@ -147,7 +147,7 @@ export default {
 export default {
   name: 'VideoPlayer',
   mounted() {
-    window.analytics.track('Video Watched');
+    window.analytics.track('Video Played');
   }
 }
 </script>
