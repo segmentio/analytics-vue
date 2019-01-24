@@ -172,7 +172,7 @@ npm start
 3. View the live events being triggered in your Segment dashboard debugger:
     + Page event: `Home`
     + Page event: `About`
-    + Track event: `Clicked Learn Vue Link`
+    + Track event: `Learn Vue Link Clicked`
 
 # 🤔 What's Next?
 Check out our full <a href="https://segment.com/docs/sources/website/analytics.js/">Analytics.js reference</a> to see what else is possible, or read about the <a href="https://segment.com/docs/sources/server/http/">Tracking API methods</a> to get a sense for the bigger picture.
