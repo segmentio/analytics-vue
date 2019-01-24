@@ -36,7 +36,7 @@ If we seperate our pages into their own components and allow the [`<router-view>
 
 <script>
 export default {
-  name: 'Home',
+  name: 'HomePage',
   mounted() {
     window.analytics.page('Home');
   }
@@ -73,7 +73,7 @@ If you're using a form to handle user signups or logins, the `v-on:submit` handl
 
 <script>
 export default {
-  name: 'Form',
+  name: 'IdentifyForm',
   data: {
     name: '',
     email: ''
@@ -118,7 +118,7 @@ That's telling us that your user just triggered the <b>Article Bookmarked</b> ev
 
 <script>
 export default {
-  name: 'Signup',
+  name: 'SignupButton',
   data: {
     return {
       msg: 'Signup with Segment today!'
