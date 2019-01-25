@@ -37,7 +37,7 @@ If we seperate our pages into their own components and allow the [`<router-view>
 <script>
 export default {
   name: 'HomePage',
-  mounted() {
+  mounted () {
     window.analytics.page('Home');
   }
 }
@@ -66,7 +66,7 @@ If you're using a form to handle user signups or logins, the `v-on:submit` handl
 <template>
   <form v-on:submit="onIdentifySubmit">
     <input name="name" type="text" v-model="name" />
-    <input name="email" type="text" v-model="email" /> 
+    <input name="email" type="email" v-model="email" />
     <input type="submit" />
   </form>
 </template>
@@ -79,7 +79,7 @@ export default {
     email: ''
   },
   methods: {
-    onIdentifySubmit() {
+    onIdentifySubmit () {
       // Add your own unique ID here or we will automatically assign an anonymousID
       window.analytics.identify({
         name: this.name,
@@ -125,7 +125,7 @@ export default {
     }
   },
   methods: {
-    trackClickEvent() {
+    trackClickEvent () {
       window.analytics.track('User Signup');
     }
   }
@@ -146,8 +146,39 @@ export default {
 <script>
 export default {
   name: 'VideoPlayer',
-  mounted() {
+  mounted () {
     window.analytics.track('Video Played');
+  }
+}
+</script>
+```
+
+### Error Boundary
+Using a higher-order component to wrap around children components can be useful for catching errors. Usually when an error occurs, we will log the error with `track` and gracefully display the appropriate child component:
+
+```javascript
+<script>
+export default {
+  name: 'ErrorBoundary',
+  props: {
+    errorComponent: {
+      type: Object,
+      default: () => null
+    }
+  },
+  data: () => ({
+    error: false
+  }),
+  errorCaptured (err, vm, info) {
+    this.error = true
+
+    window.analytics.track('JavaScript Error', {
+      error: err,
+      errorInfo: info
+    })
+  },
+  render (h) {
+    return this.error ? h(this.errorComponent) : this.$slots.default[0]
   }
 }
 </script>
