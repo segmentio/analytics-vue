@@ -38,7 +38,7 @@ If we seperate our pages into their own components and allow the [`<router-view>
 export default {
   name: 'HomePage',
   mounted () {
-    window.analytics.page('Home');
+    window.analytics.page('Home')
   }
 }
 </script>
@@ -126,7 +126,7 @@ export default {
   },
   methods: {
     trackClickEvent () {
-      window.analytics.track('User Signup');
+      window.analytics.track('User Signup')
     }
   }
 }
@@ -147,7 +147,7 @@ export default {
 export default {
   name: 'VideoPlayer',
   mounted () {
-    window.analytics.track('Video Played');
+    window.analytics.track('Video Played')
   }
 }
 </script>
@@ -175,7 +175,7 @@ export default {
   name: 'DestinationsToggle',
   methods: {
     afterEnter (el) {
-      window.analytics.track('Destinations Info Toggled');
+      window.analytics.track('Destinations Info Toggled')
     }
   }
 }
@@ -183,7 +183,7 @@ export default {
 ```
 
 ### Error Boundary
-Using a higher-order component to wrap around children components can be useful for catching errors. Usually when an error occurs, we will log the error with `track` and gracefully display the appropriate child component:
+A higher-order component to wrap around children components can be useful for catching errors. Usually when an error occurs, we will log the error with `track` and gracefully display the appropriate child component:
 
 ```javascript
 <script>
@@ -212,6 +212,13 @@ export default {
 }
 </script>
 ```
+
+## 🎓 Advanced
+### Typecheck
+...
+
+### Mixin
+...
 
 Once you've added a few track calls, **you're done**! You successfully installed `Analytics.js` tracking. Now you're ready to turn on any destination you fancy from our interface. 🎉
 
