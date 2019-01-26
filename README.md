@@ -153,6 +153,35 @@ export default {
 </script>
 ```
 
+### Transition
+Using a [transition](https://vuejs.org/v2/guide/transitions.html) wrapper component to render a piece of UI? The available hooks (`beforeEnter`, `enter`, `enterCancelled`, `leave`, `etc.`) are great to call `track` for particular events:
+
+```javascript
+<template>
+  <div>
+    <button v-on:click="show = !show">
+      Toggle
+    </button>
+    <transition>
+      <p v-if="show">
+        Integrate with over 200+ destinations!
+      </p>
+    </transition>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'DestinationsToggle',
+  methods: {
+    afterEnter (el) {
+      window.analytics.track('Destinations Info Toggled');
+    }
+  }
+}
+</script>
+```
+
 ### Error Boundary
 Using a higher-order component to wrap around children components can be useful for catching errors. Usually when an error occurs, we will log the error with `track` and gracefully display the appropriate child component:
 
@@ -166,9 +195,9 @@ export default {
       default: () => null
     }
   },
-  data: () => ({
+  data: {
     error: false
-  }),
+  },
   errorCaptured (err, vm, info) {
     this.error = true
 
