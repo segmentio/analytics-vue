@@ -213,14 +213,34 @@ export default {
 </script>
 ```
 
+Once you've added a few track calls, **you're done**! You successfully installed `Analytics.js` tracking. Now you're ready to turn on any destination you fancy from our interface. 🎉
+
 ## 🎓 Advanced
 ### Typecheck
-...
+Typechecking with [`prop-types`](https://vuejs.org/v2/guide/components-props.html) can catch a lot of potential bugs and prevent handing down information in the wrong format. For example, enforcing a format for `user` related objects can help with data standardization. You can get creative with the traits you expect to be sent to Segment for `identify` and `track`:
 
-### Mixin
-...
+```javascript
+<script>
+type IdentifyTraits = {
+  name: string,
+  email: string,
+  isAuthorized: boolean
+}
 
-Once you've added a few track calls, **you're done**! You successfully installed `Analytics.js` tracking. Now you're ready to turn on any destination you fancy from our interface. 🎉
+export default {
+  name: 'User',
+  props: {
+    id: String,
+    identifyTraits: Object as () => IdentifyTraits,
+    trackTitle: String,
+    trackTraits: Object
+  },
+  render () {
+    return this.$slots.default[0]
+  }
+}
+</script>
+```
 
 # 📺 <span name="demo">Demo</span>
 1. Add your Segment <b>Write Key</b>, which you can find in your project setup guide or settings, to the snippet in <a href="https://github.com/segmentio/analytics-vue/blob/master/public/index.html#L11">index.html</a>:
