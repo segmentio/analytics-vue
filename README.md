@@ -154,7 +154,7 @@ export default {
 ```
 
 ### Transition
-Using a [transition](https://vuejs.org/v2/guide/transitions.html) wrapper component to render a piece of UI? The available hooks (`beforeEnter`, `enter`, `enterCancelled`, `leave`, `etc.`) are great to call `track` for particular events:
+Using a [transition](https://vuejs.org/v2/guide/transitions.html) wrapper component to render a piece of UI? The available hooks (`beforeEnter`, `enter`, `enterCancelled`, `leave`, `etc.`) can be used to call `track` for particular events:
 
 ```javascript
 <template>
