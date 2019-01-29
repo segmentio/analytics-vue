@@ -67,7 +67,7 @@ If you're using a form to handle user signups or logins, the `v-on:submit` handl
   <form v-on:submit="handleSubmit">
     <input name="name" type="text" v-model="name" />
     <input name="email" type="email" v-model="email" />
-    <input type="submit" />
+    <input type="submit" value="Submit" />
   </form>
 </template>
 
