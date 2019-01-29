@@ -3,7 +3,6 @@
     <router-link class="router-link" to="/">Home</router-link>
     <router-link class="router-link" to="/about">About</router-link>
     <router-view></router-view>
-    <img src="./assets/logo.png">
     <p>Edit <code>src/App.vue</code> and save to reload.</p>
     <Link />
   </div>

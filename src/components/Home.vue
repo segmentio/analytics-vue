@@ -1,5 +1,8 @@
 <template>
-  <h1>Home</h1>
+  <div>
+    <h1>Home</h1>
+    <img src="../assets/logo.png">
+  </div>
 </template>
 
 <script>
