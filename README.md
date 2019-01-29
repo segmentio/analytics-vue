@@ -23,7 +23,7 @@ Installing Segment is easy, just paste this snippet into the head of your site. 
 Now `window.analytics` is loaded and available to use throughout your app!
 
 ###  Single-Page Application
-Clicking a link or a new tab will not reload the webpage in an SPA. Therefore, using `analytics.page()` in `index.html` is not ideal and we need to simulate a page load. However, we can achieve `page` calls with the use of [vue-router](https://router.vuejs.org) and Vue's lifecycle hooks.
+The `page` method lets you record page views on your website, along with optional extra information about the page being viewed. You can read more about in the [page reference](https://segment.com/docs/sources/website/analytics.js/#page). Clicking a link or a new tab will not reload the webpage in an SPA. Therefore, using `analytics.page()` in `index.html` is not ideal and we need to simulate a page load. However, we can achieve `page` calls with the use of [vue-router](https://router.vuejs.org) and Vue's lifecycle hooks.
 
 If we seperate our pages into their own components and allow the [`<router-view>`](https://router.vuejs.org/api/#router-view) component to handle when our pages render, then we can use `mounted` lifecycle hook to invoke our `page` calls:
 
@@ -64,7 +64,7 @@ That's identifying Michael by his unique User ID and labeling him with `name` an
 If you're using a form to handle user signups or logins, the `v-on:submit` handler is a great use-case to call `identify`:
 ```javascript
 <template>
-  <form v-on:submit="onIdentifySubmit">
+  <form v-on:submit="handleSubmit">
     <input name="name" type="text" v-model="name" />
     <input name="email" type="email" v-model="email" />
     <input type="submit" />
@@ -79,7 +79,7 @@ export default {
     email: ''
   },
   methods: {
-    onIdentifySubmit () {
+    handleSubmit () {
       // Add your own unique ID here or we will automatically assign an anonymousID
       window.analytics.identify({
         name: this.name,
@@ -111,7 +111,7 @@ That's telling us that your user just triggered the <b>Article Bookmarked</b> ev
 
 ```javascript
 <template>
-  <button v-on:click="trackClickEvent">
+  <button v-on:click="trackEvent">
     {{ msg }} 
   </button>
 </template>
@@ -125,7 +125,7 @@ export default {
     }
   },
   methods: {
-    trackClickEvent () {
+    trackEvent () {
       window.analytics.track('User Signup')
     }
   }
@@ -213,7 +213,7 @@ export default {
 </script>
 ```
 
-Once you've added a few track calls, **you're done**! You successfully installed `Analytics.js` tracking. Now you're ready to turn on any destination you fancy from our interface. 🎉
+Once you've added a few track calls, **you're done**! You successfully installed `Analytics.js` tracking. Now you're ready to turn on any destination from our interface. 🎉
 
 ## 🎓 Advanced
 ### Typecheck
