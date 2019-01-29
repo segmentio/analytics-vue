@@ -23,9 +23,9 @@ Installing Segment is easy, just paste this snippet into the head of your site. 
 Now `window.analytics` is loaded and available to use throughout your app!
 
 ###  Single-Page Application
-The `page` method lets you record page views on your website, along with optional extra information about the page being viewed. You can read more about in the [page reference](https://segment.com/docs/sources/website/analytics.js/#page). Clicking a link or a new tab will not reload the webpage in an SPA. Therefore, using `analytics.page()` in `index.html` is not ideal and we need to simulate a page load. However, we can achieve `page` calls with the use of [vue-router](https://router.vuejs.org) and Vue's lifecycle hooks.
+The `page` method lets you record page views on your website, along with optional information about the page being viewed. You can read more about in the [page reference](https://segment.com/docs/sources/website/analytics.js/#page). Clicking a link or a new tab will not reload the webpage in an SPA. Therefore, using `analytics.page()` in `index.html` is not ideal and we need to simulate a page load. However, we can achieve `page` calls with the use of [vue-router](https://router.vuejs.org) and Vue's lifecycle hooks.
 
-If we seperate our pages into their own components and allow the [`<router-view>`](https://router.vuejs.org/api/#router-view) component to handle when our pages render, then we can use `mounted` lifecycle hook to invoke our `page` calls:
+If we separate our pages into their own components and allow the [`<router-view>`](https://router.vuejs.org/api/#router-view) component to handle when our pages render, then we can use `mounted` lifecycle hook to invoke our `page` calls:
 
 ```javascript
 <template>
@@ -134,7 +134,7 @@ export default {
 ```
 
 ### Lifecycle Hook
-[Lifecycle hooks](https://vuejs.org/v2/api/#Options-Lifecycle-Hooks) are also great use cases for tracking particular events. For example, if you want to track components that are conditionally rendered from a parent component and that are outside the scope of a `page` call, then you can use `mounted` to trigger a `track` event:
+[Lifecycle hooks](https://vuejs.org/v2/api/#Options-Lifecycle-Hooks) are also great for tracking particular events. For example, if you want to track components that are conditionally rendered from a parent component and that are outside the scope of a `page` call, then you can use `mounted` to trigger a `track` event:
 
 ```javascript
 <template>
