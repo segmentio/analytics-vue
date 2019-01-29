@@ -231,9 +231,10 @@ Typechecking with [`prop-types`](https://vuejs.org/v2/guide/components-props.htm
 
 ```javascript
 <script>
+// Object with type declaration is only valid with Typescript
 type IdentifyTraits = {
-  name: string,
-  email: string,
+  name: string
+  email: string
   isAuthorized: boolean
 }
 
