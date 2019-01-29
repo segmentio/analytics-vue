@@ -112,7 +112,7 @@ That's telling us that your user just triggered the <b>Article Bookmarked</b> ev
 ```javascript
 <template>
   <button v-on:click="trackEvent">
-    {{ msg }} 
+    {{ title }}
   </button>
 </template>
 
@@ -121,7 +121,7 @@ export default {
   name: 'SignupButton',
   data: {
     return {
-      msg: 'Signup with Segment today!'
+      title: 'Signup with Segment today!'
     }
   },
   methods: {
@@ -160,11 +160,11 @@ Using a [transition](https://vuejs.org/v2/guide/transitions.html) wrapper compon
 <template>
   <div>
     <button v-on:click="show = !show">
-      Toggle
+      {{ title }}
     </button>
     <transition>
       <p v-if="show">
-        Integrate with over 200+ destinations!
+        {{ text }}
       </p>
     </transition>
   </div>
@@ -173,6 +173,12 @@ Using a [transition](https://vuejs.org/v2/guide/transitions.html) wrapper compon
 <script>
 export default {
   name: 'DestinationsToggle',
+  data: {
+    return {
+      title: 'Toggle',
+      text: 'Integrate with over 200+ destinations!'
+    }
+  },
   methods: {
     afterEnter (el) {
       window.analytics.track('Destinations Info Toggled')
