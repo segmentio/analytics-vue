@@ -162,7 +162,7 @@ Using a [transition](https://vuejs.org/v2/guide/transitions.html) wrapper compon
     <button v-on:click="show = !show">
       {{ title }}
     </button>
-    <transition>
+    <transition v-on:after-enter="afterEnter">
       <p v-if="show">
         {{ text }}
       </p>
