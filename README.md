@@ -193,16 +193,20 @@ A higher-order component to wrap around children components can be useful for ca
 
 ```javascript
 <script>
+import DefaultErrorComponent from './DefaultErrorComponent.vue'
+
 export default {
   name: 'ErrorBoundary',
   props: {
     errorComponent: {
       type: Object,
-      default: () => null
+      default: () => DefaultErrorComponent
     }
   },
   data: {
-    error: false
+    return {
+      error: false
+    }
   },
   errorCaptured (err, vm, info) {
     this.error = true
