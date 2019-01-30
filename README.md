@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/16131737/51560489-81227900-1e39-11e9-9998-62431a719886.png"/>
+  <img src="https://user-images.githubusercontent.com/16131737/52017744-245c3980-249d-11e9-822d-4565703c36c8.png"/>
 </div>
 
 This tutorial will help you start sending data from your Vue application to Segment and any of our destinations, using our <a href="https://segment.com/docs/sources/website/analytics.js/">Analytics.js library</a>. As soon as you're setup you'll be able to turn on any new destinations with the flip of a switch!
