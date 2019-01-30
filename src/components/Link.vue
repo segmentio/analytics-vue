@@ -4,7 +4,7 @@
     target="_blank"
     v-on:click="trackClickEvent"
    >
-    {{ msg }}
+    {{ link }}
   </a>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   name: 'Link',
   data () {
     return {
-      msg: 'Learn Vue'
+      link: 'Learn Vue'
     }
   },
   methods: {
