@@ -1,10 +1,45 @@
+# Segment Vue Quickstart Guide
 <div align="center">
   <img src="https://user-images.githubusercontent.com/16131737/52017744-245c3980-249d-11e9-822d-4565703c36c8.png"/>
+  <p><b><i>You can't fix what you can't measure</i></b></p>
 </div>
 
-This tutorial will help you start sending data from your Vue application to Segment and any of our destinations, using our <a href="https://segment.com/docs/sources/website/analytics.js/">Analytics.js library</a>. As soon as you're setup you'll be able to turn on any new destinations with the flip of a switch!
+Analytics helps you measure your users, product, and business. It unlocks insights into your app's funnel, core business metrics, and whether you have product-market fit.
 
-Want to try it for yourself? Scroll down to the <a href="#demo">demo section</a> and run the app!
+## How to get started
+1. **Collect analytics data** from your app(s).
+    - The top 200 Segment companies collect data from 5+ source types (web, mobile, server, CRM, etc.).
+2. **Send the data to analytics tools** (for example, Google Analytics, Amplitude, Mixpanel).
+    - Over 250+ Segment companies send data to eight categories of destinations such as analytics tools, warehouses, email marketing and remarketing systems, session recording, and more.
+3. **Explore your data** by creating metrics (for example, new signups, retention cohorts, and revenue generation).
+    - The best Segment companies use retention cohorts to measure product market fit. Netflix has 70% paid retention after 12 months, 30% after 7 years.
+
+[Segment](https://segment.com) collects analytics data and allows you to send it to more than 250 apps (such as Google Analytics, Mixpanel, Optimizely, Facebook Ads, Slack, Sentry) just by flipping a switch. You only need one Segment code snippet, and you can turn integrations on and off at will, with no additional code.
+
+### Why?
+1. **Power all your analytics apps with the same data**. Instead of writing code to integrate all of your tools individually, send data to Segment, once.
+
+2. **Install tracking for the last time**. We're the last integration you'll ever need to write. You only need to instrument Segment once. Reduce all of your tracking code and advertising tags into a single set of API calls.
+
+3. **Send data from anywhere**. Send Segment data from any device, and we'll transform and send it on to any tool.
+
+4. **Query your data in SQL**. Slice, dice, and analyze your data in detail with Segment SQL. We'll transform and load your customer behavioral data directly from your apps into Amazon Redshift, Google BigQuery, or Postgres. Save weeks of engineering time by not having to invent your own data warehouse and ETL pipeline.
+
+    For example, you can capture data on any app:
+    ```js
+    analytics.load('YOUR_WRITE_KEY') // web_prod
+    analytics.track('Order Completed', { price: 99.84 })
+    ```
+    Then, query the resulting data in SQL:
+
+    ```sql
+    select * from web_prod.order_completed
+    order by price desc
+    ```
+
+# 🏃💨 Quickstart
+
+In this tutorial you'll add your write key to this Vue demo app to start sending data from the app to Segment, and from there to any of our destinations, using our [Analytics.js library](https://segment.com/docs/sources/website/analytics.js/). Once your app is set up, you'll be able to turn on new destinations with the click of a button! Ready to try it for yourself? Scroll down to the <a href="#demo">demo section</a> and run the app!
 
 Start sending data from any [source](https://segment.com/docs/guides/general/what-is-a-source) and see events live in the Segment **debugger**:
 
@@ -19,30 +54,75 @@ Once you have data being sent to Segment, forward this data to any of our 250+ [
   <img src="https://user-images.githubusercontent.com/16131737/52017558-88323280-249c-11e9-9895-ebcd3e37c040.gif"/>
 </div>
 
-# 🔌 Installation
+## 📺 <span name="demo">Demo</span>
+To start with this demo app, follow the instructions below:
+
+1. Edit the snippet in [index.html](https://github.com/segmentio/analytics-vue/blob/master/public/index.html#L11) to replace `YOUR_WRITE_KEY` with your Segment **Write Key**.
+    > **Tip!** You can find your key in your project setup guide or settings in the Segment.
+
+    Your snippet will look something like the example below.
+
+    ```html
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+      analytics.load("YOUR_WRITE_KEY");
+      }}();
+    </script>
+    ```
+
+2. From the command line, use `npm install` to install the dependencies, then `npm start` to run the app.
+
+    ```bash
+    npm install
+    npm start
+    ```
+
+3. Go to the Segment site, and in the Debugger look at the live events being triggered in your app. You should see the following:
+    - Page event: `Home` - When someone views the `home` page.
+    - Page event: `About` - When someone views the `about` page.
+    - Track event: `Learn Vue Link Clicked` - When someone clicks the "Learn Vue" link.
+
+Congrats! You're seeing live data from your demo Vue app in Segment! 🎉
+
+# 🔌 Installing on Your App
+
+Okay, the demo app is cool, but how do I get this in my own Vue app? Follow the steps below.
+
 ## ✂️ Step 1: Copy the Snippet
-Installing Segment is easy, just paste this snippet into the head of your site. When you paste it, you'll need to replace `YOUR_WRITE_KEY` with your Segment project's <b>Write Key</b>, which you can find in your project setup guide or settings:
+To install Segment in your own app, paste the snippet below into the `head` tag of your site. Then, replace `YOUR_WRITE_KEY` in the snippet with your Segment project's **Write Key**.
+
+> **Tip!** You can find your write key in your Segment project setup guide or settings.
+
 ```html
 <script type="text/javascript">
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
   analytics.load("YOUR_WRITE_KEY");
+  // analytics.page() // Uncomment if your application is NOT an SPA
   }}();
 </script>
 ```
 Now `window.analytics` is loaded and available to use throughout your app!
 
-###  Single-Page Application
-The `page` method lets you record page views on your website, along with optional information about the page being viewed. You can read more about in the [page reference](https://segment.com/docs/sources/website/analytics.js/#page). Clicking a link or a new tab will not reload the webpage in an SPA. Therefore, using `analytics.page()` in `index.html` is not ideal and we need to simulate a page load. However, we can achieve `page` calls with the use of [vue-router](https://router.vuejs.org) and Vue's lifecycle hooks.
+In the next sections you'll build out your implementation to track page loads, to identify individual users of your app, and track the actions they take.
 
-If we separate our pages into their own components and allow the [`<router-view>`](https://router.vuejs.org/api/#router-view) component to handle when our pages render, then we can use `mounted` lifecycle hook to invoke our `page` calls:
+## 📱 Step 2: Track Page Views in an SPA
 
-```javascript
+> **Tip!** If your Vue application is **not** a Single Page application, you can uncomment the section in the above snippet and skip to Step 3.
+
+The snippet from Step 1 loads `Analytics.js` into your app and is ready to track page loads. However, most Vue apps are a Single Page App (SPA), and in SPAs clicking a link or a new tab does not reload the whole webpage.
+
+The `page` method lets you record page views on your website, along with optional information about the page being viewed. You can read more about how this works in the [page reference](https://segment.com/docs/sources/website/analytics.js/#page).
+
+This means that using `analytics.page()` in `index.html` on a SPA will not detect page component loads, and you'll need to simulate a page load some other way. You can use [vue-router](https://router.vuejs.org) and Vue's lifecycle hooks to create `page` calls.
+
+If you separate your pages into their own components and allow the [`<router-view>`](https://router.vuejs.org/api/#router-view) component to handle when the page renders, you can use `mounted` to invoke `page` calls. The example below shows one way you could do this.
+
+```html
 <template>
   <h1>
     Home page.
   </h1>
 </template>
-
 <script>
 export default {
   name: 'HomePage',
@@ -53,10 +133,11 @@ export default {
 </script>
 ```
 
-##  🔍 Step 2: Identify Users
-The `identify` method is how you tell Segment who the current user is. It includes a unique User ID and any optional traits you know about them. You can read more about it in the <a href="https://segment.com/docs/sources/website/analytics.js/#identify">identify reference</a>.
+## 🔍 Step 3: Identify Users
 
-<b>Note:</b> You won't need to call `identify` for anonymous visitors to your site. We'll automatically assign them an `anonymousId`, so just calling `page` and `track` will still work just fine without `identify`.
+The `identify` method is how you tell Segment who the current user is. It includes a unique User ID and any optional traits you can pass on about them. You can read more about this in the [identify reference](https://segment.com/docs/sources/website/analytics.js/#identify).
+
+**Note:** You don't need to call `identify` for anonymous visitors to your site. Segment automatically assigns them an `anonymousId`, so just calling `page` and `track` still works just fine without `identify`.
 
 Here's what a basic call to `identify` might look like:
 
@@ -67,11 +148,11 @@ window.analytics.identify('f4ca124298', {
 });
 ```
 
-That's identifying Michael by his unique User ID and labeling him with `name` and `email` traits.
+This call identifies Michael by his unique User ID and labels him with `name` and `email` traits.
 
-### Event Handler
-If you're using a form to handle user signups or logins, the `v-on:submit` handler is a great use-case to call `identify`:
-```javascript
+In Vue, if you have a form where users sign up or log in, you can use the `v-on:submit` handler to call `identify`, as in the example below:
+
+```html
 <template>
   <form v-on:submit="handleSubmit">
     <input name="name" type="text" v-model="name" />
@@ -100,8 +181,10 @@ export default {
 </script>
 ```
 
-## ⏰ Step 3: Track Actions
-The `track` method is how you tell Segment about which actions your users are performing on your site. Every action triggers what we call an "event", which can also have associated properties. It is important to figure out exactly what events you want to `track` instead of tracking anything and everything. You can read more about `track` in the <a href="https://segment.com/docs/sources/website/analytics.js/#track">track reference</a>.
+> **Tip!** Other handlers might be better for other situations. You can see the [Vue docs on event handlers](https://vuejs.org/v2/guide/events.html) for more information.
+
+## ⏰ Step 4: Track Actions
+The `track` method is how you tell Segment about which actions your users are performing on your site. Every action triggers what we call an "event", which can also have associated properties. It is important to figure out exactly what events you want to `track` instead of tracking anything and everything. A good way to do this is to build a [tracking plan](https://segment.com/docs/guides/sources/can-i-see-an-example-of-a-tracking-plan/). You can read more about `track` in the [track reference](https://segment.com/docs/sources/website/analytics.js/#track).
 
 Here's what a call to `track` might look like when a user bookmarks an article:
 
@@ -113,12 +196,12 @@ window.analytics.track('Article Bookmarked', {
 });
 ```
 
-That's telling us that your user just triggered the <b>Article Bookmarked</b> event and bookmarked the `Snow Fall` article authored by `John Branch`. Properties can be anything you want to associate to an event when it is tracked.
+The snippet tells us that the user just triggered the **Article Bookmarked** event, and the article they bookmarked was the `Snow Fall` article authored by `John Branch`. Properties can be anything you want to associate to an event when it is tracked.
 
-### Event Handler
-[Event handlers](https://vuejs.org/v2/guide/events.html) are oftenly used to call `track`, such as: `v-on:click`, `v-on:submit`, `v-on:mouseover`, `etc.`:
+### Track Calls with Event Handlers
+In Vue, you can use several event handlers, such as `v-on:click`, `v-on:submit`, `v-on:mouseover`, to call the `track` events. In the example below, we use the `v-on:click` handler to make a `track` call to log a `User Signup`.
 
-```javascript
+```html
 <template>
   <button v-on:click="trackEvent">
     {{ title }}
@@ -142,10 +225,12 @@ export default {
 </script>
 ```
 
-### Lifecycle Hook
-[Lifecycle hooks](https://vuejs.org/v2/api/#Options-Lifecycle-Hooks) are also great for tracking particular events. For example, if you want to track components that are conditionally rendered from a parent component and that are outside the scope of a `page` call, then you can use `mounted` to trigger a `track` event:
+> **Tip!** Other handlers might be better for other situations. You can see the [Vue docs on event handlers](https://vuejs.org/v2/guide/events.html) for more information.
 
-```javascript
+### Track Calls with Lifecycle Hooks
+[Lifecycle hooks](https://vuejs.org/v2/api/#Options-Lifecycle-Hooks) are also great for tracking particular events, and in fact we used a lifecycle hook in Step 2 to track page component loads. For example, if you want to track components that are conditionally rendered from a parent component and that are outside the scope of a `page` call, then you can use `mounted` to trigger a `track` event:
+
+```html
 <template>
   <video autoplay>
     <source src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" type="video/mp4">
@@ -162,10 +247,10 @@ export default {
 </script>
 ```
 
-### Transition
-Using a [transition](https://vuejs.org/v2/guide/transitions.html) wrapper component to render a piece of UI? The available hooks (`beforeEnter`, `enter`, `enterCancelled`, `leave`, `etc.`) can be used to call `track` for particular events:
+### Track Calls with Transitions
+[Transition](https://vuejs.org/v2/guide/transitions.html) wrapper components control when UI renders. The transition hooks, `beforeEnter`, `enter`, `enterCancelled`, and `leave` are fired for different times in a component lifecycle. In this example, when the `Toggle` button is clicked, our text is rendered, and the `afterEnter` hook fires a `track` event.
 
-```javascript
+```html
 <template>
   <div>
     <button v-on:click="show = !show">
@@ -197,10 +282,16 @@ export default {
 </script>
 ```
 
-### Error Boundary
-A higher-order component to wrap around children components can be useful for catching errors. Usually when an error occurs, we will log the error with `track` and gracefully display the appropriate child component:
+## 🤔 What's next?
+Once you've added a few track calls, **you're done**! You've successfully installed `Analytics.js` tracking. Now you're ready to see your data in the Segment dashboard, and turn on any destination tools. 🎉
 
-```javascript
+## 🎓 Advanced
+Once you've mastered the basics, here are some advanced use cases you can apply with Segment.
+
+### Track Calls for Error Logging
+You can also use `track` calls to log errors, using a higher-order component such as `ErrorBoundary` to wrap around child components. Then, when an error occurs you log the error with `track` and gracefully display the appropriate child component. In this example, when an error is caught by `errorCaptured`, we set our boolean (`this.error = true`), `track` the error, and the `errorComponent` will be rendered.
+
+```html
 <script>
 import DefaultErrorComponent from './DefaultErrorComponent.vue'
 
@@ -232,13 +323,10 @@ export default {
 </script>
 ```
 
-Once you've added a few track calls, **you're done**! You successfully installed `Analytics.js` tracking. Now you're ready to turn on any destination from our interface. 🎉
+### Typechecking with PropTypes
+You can use typechecking with [`prop-types`](https://vuejs.org/v2/guide/components-props.html) to catch a lot of potential bugs and prevent handing down information in the wrong format. For example, you can enforce a format for `user` related objects which can help with data standardization. You can get creative with the traits you expect to be sent to Segment for `identify` and `track`:
 
-## 🎓 Advanced
-### Typecheck
-Typechecking with [`prop-types`](https://vuejs.org/v2/guide/components-props.html) can catch a lot of potential bugs and prevent handing down information in the wrong format. For example, enforcing a format for `user` related objects can help with data standardization. You can get creative with the traits you expect to be sent to Segment for `identify` and `track`:
-
-```javascript
+```html
 <script>
 // Object with type declaration is only valid with Typescript
 type IdentifyTraits = {
@@ -262,26 +350,9 @@ export default {
 </script>
 ```
 
-# 📺 <span name="demo">Demo</span>
-1. Add your Segment <b>Write Key</b>, which you can find in your project setup guide or settings, to the snippet in <a href="https://github.com/segmentio/analytics-vue/blob/master/public/index.html#L11">index.html</a>:
-```html
-<script type="text/javascript">
-  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
-  analytics.load("YOUR_WRITE_KEY");
-  }}();
-</script>
-```
+Interested more in data standardization? Check out our [protocols product](https://segment.com/product/protocols) to improve data quality.
 
-2. Install the dependencies and run the app:
-```javascript
-npm install
-npm start
-```
-
-3. View the live events being triggered in your Segment dashboard debugger:
-    + Page event: `Home`
-    + Page event: `About`
-    + Track event: `Learn Vue Link Clicked`
+You may wondering what you can be doing with all the raw data you are sending to Segment from your Vue app. With our [warehouses product](https://segment.com/product/warehouses), your analysts and data engineers can shift focus from data normalization and pipeline maintenance to providing insights for business teams. Having the ability to query data directly in SQL and layer on visualization tools can take your product to the next level.
 
 ## 💾 Warehouses
 A warehouse is a special subset of destinations where we load data in bulk at a regular intervals, inserting and updating events and objects while automatically adjusting their schema to fit the data you've sent to Segment. We do the heavy lifting of capturing, schematizing, and loading your user data into your data warehouse of choice.
@@ -292,7 +363,5 @@ Examples of data warehouses include Amazon Redshift, Google BigQuery, MySQL, and
   <img src="https://user-images.githubusercontent.com/16131737/52017561-8b2d2300-249c-11e9-9f59-efad34ce929c.gif"/>
 </div>
 
-# 🤔 What's Next?
-Check out our full <a href="https://segment.com/docs/sources/website/analytics.js/">Analytics.js reference</a> to see what else is possible, or read about the <a href="https://segment.com/docs/sources/server/http/">Tracking API methods</a> to get a sense for the bigger picture.
-
-If you have any questions, or see anywhere we can improve our documentation, <a href="https://segment.com/contact/">please let us know</a>!
+## 📝 Docs & Feedback
+Check out our full [Analytics.js reference](https://segment.com/docs/sources/website/analytics.js/) to see what else is possible, or read about the [Tracking API methods](https://segment.com/docs/sources/server/http/) to get a sense for the bigger picture. If you have any questions, or see anywhere we can improve our documentation, [let us know](https://segment.com/contact/)!
