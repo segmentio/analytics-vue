@@ -6,9 +6,18 @@ This tutorial will help you start sending data from your Vue application to Segm
 
 Want to try it for yourself? Scroll down to the <a href="#demo">demo section</a> and run the app!
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/16131737/51566796-6b697f80-1e4a-11e9-823b-0152c032289e.gif"/>
-</p>
+Start sending data from any [source](https://segment.com/docs/guides/general/what-is-a-source) and see events live in the Segment **debugger**:
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/16131737/52017555-87010580-249c-11e9-8848-896ac1f15daa.gif"/>
+</div>
+<br/>
+
+Once you have data being sent to Segment, forward this data to any of our 250+ [destinations](https://segment.com/docs/guides/general/what-is-a-destination):
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/16131737/52017558-88323280-249c-11e9-9895-ebcd3e37c040.gif"/>
+</div>
 
 # 🔌 Installation
 ## ✂️ Step 1: Copy the Snippet
@@ -273,6 +282,15 @@ npm start
     + Page event: `Home`
     + Page event: `About`
     + Track event: `Learn Vue Link Clicked`
+
+## 💾 Warehouses
+A warehouse is a special subset of destinations where we load data in bulk at a regular intervals, inserting and updating events and objects while automatically adjusting their schema to fit the data you've sent to Segment. We do the heavy lifting of capturing, schematizing, and loading your user data into your data warehouse of choice.
+
+Examples of data warehouses include Amazon Redshift, Google BigQuery, MySQL, and Postgres.
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/16131737/52017561-8b2d2300-249c-11e9-9f59-efad34ce929c.gif"/>
+</div>
 
 # 🤔 What's Next?
 Check out our full <a href="https://segment.com/docs/sources/website/analytics.js/">Analytics.js reference</a> to see what else is possible, or read about the <a href="https://segment.com/docs/sources/server/http/">Tracking API methods</a> to get a sense for the bigger picture.
