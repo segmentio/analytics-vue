@@ -289,7 +289,7 @@ Once you've added a few track calls, **you're done**! You've successfully instal
 Once you've mastered the basics, here are some advanced use cases you can apply with Segment.
 
 ### Track Calls for Error Logging
-You can also use `track` calls to log errors, using a higher-order component such as `ErrorBoundary` to wrap around child components. Then, when an error occurs you log the error with `track` and gracefully display the appropriate child component. In this example, when an error is caught by `errorCaptured`, we set our boolean (`this.error = true`), `track` the error, and the `errorComponent` will be rendered.
+You can also use `track` calls to log errors, using a higher-order component such as `ErrorBoundary` to wrap around child components. Then, when an error occurs you log the error with `track` and gracefully display the appropriate child component. In this example, when an error is caught by `errorCaptured`, we set our `error` boolean to `true`, `track` the error, and then the `errorComponent` will be rendered.
 
 ```html
 <script>
