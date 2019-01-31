@@ -51,7 +51,7 @@ Start sending data from any [source](https://segment.com/docs/guides/general/wha
 Once you have data being sent to Segment, forward this data to any of our 250+ [destinations](https://segment.com/docs/guides/general/what-is-a-destination):
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/16131737/52017558-88323280-249c-11e9-9895-ebcd3e37c040.gif"/>
+  <img src="https://user-images.githubusercontent.com/16131737/52022151-78bae580-24ac-11e9-88ed-fb20a33eecfb.gif"/>
 </div>
 
 ## 📺 <span name="demo">Demo</span>
@@ -360,7 +360,7 @@ A warehouse is a special subset of destinations where we load data in bulk at a 
 Examples of data warehouses include Amazon Redshift, Google BigQuery, MySQL, and Postgres.
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/16131737/52017561-8b2d2300-249c-11e9-9f59-efad34ce929c.gif"/>
+  <img src="https://user-images.githubusercontent.com/16131737/52022132-6a6cc980-24ac-11e9-8e09-8606531a5dc7.gif"/>
 </div>
 
 ## 📝 Docs & Feedback
