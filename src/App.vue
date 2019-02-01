@@ -1,7 +1,15 @@
 <template>
   <div id="app">
-    <router-link class="router-link" to="/">Home</router-link>
-    <router-link class="router-link" to="/about">About</router-link>
+    <nav>
+      <ul class="header-ul">
+        <li>
+          <router-link class="router-link" to="/">Home</router-link>
+        </li>
+        <li>
+          <router-link class="router-link" to="/about">About</router-link>
+        </li>
+      </ul>
+    </nav>
     <router-view></router-view>
     <p>Edit <code>src/App.vue</code> and save to reload.</p>
     <Link />
@@ -25,14 +33,12 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  height: 50%;
 }
 
 #app > p {
@@ -41,6 +47,17 @@ export default {
 
 #app > img {
   padding: 15px 0;
+}
+
+.header-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-ul > li {
+  display: inline;
+  padding: 30px;
 }
 
 .router-link {
