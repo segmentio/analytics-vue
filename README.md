@@ -30,7 +30,6 @@ Analytics helps you measure your users, product, and business. It unlocks insigh
     analytics.track('Order Completed', { price: 99.84 })
     ```
     Then, query the resulting data in SQL:
-
     ```sql
     select * from app.order_completed
     order by price desc
@@ -69,7 +68,6 @@ To start with this demo app, follow the instructions below:
     ```
 
 2. From the command line, use `npm install` to install the dependencies, then `npm start` to run the app.
-
     ```bash
     npm install
     npm start
@@ -228,7 +226,7 @@ export default {
 ```html
 <template>
   <video autoplay>
-    <source src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" type="video/mp4">
+    <source src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" type="video/youtube">
   </video>
 </template>
 
