@@ -149,9 +149,9 @@ In Vue, if you have a form where users sign up or log in, you can use the `v-on:
 ```html
 <template>
   <form v-on:submit="handleSubmit">
-    <input name="name" type="text" v-model="name" />
-    <input name="email" type="email" v-model="email" />
-    <input type="submit" value="Submit" />
+    <input name="name" type="text" v-model="name">
+    <input name="email" type="email" v-model="email">
+    <input type="submit" value="Submit">
   </form>
 </template>
 
