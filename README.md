@@ -204,7 +204,7 @@ In Vue, you can use several event handlers, such as `v-on:click`, `v-on:submit`,
 <script>
 export default {
   name: 'SignupButton',
-  data: {
+  data() {
     return {
       title: 'Signup with Segment today!'
     }
@@ -260,8 +260,9 @@ export default {
 <script>
 export default {
   name: 'DestinationsToggle',
-  data: {
+  data() {
     return {
+      show: false,
       title: 'Toggle',
       text: 'Integrate with over 200+ destinations!'
     }
@@ -296,7 +297,7 @@ export default {
       default: () => DefaultErrorComponent
     }
   },
-  data: {
+  data() {
     return {
       error: false
     }
