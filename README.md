@@ -51,37 +51,8 @@ Once you have data being sent to Segment, forward this data to any of our 250+ [
   <img src="https://user-images.githubusercontent.com/16131737/52022151-78bae580-24ac-11e9-88ed-fb20a33eecfb.gif"/>
 </div>
 
-## 📺 <span name="demo">Demo</span>
-To start with this demo app, follow the instructions below:
-
-1. [Sign up](https://app.segment.com/signup?utm_source=github&utm_medium=click&utm_campaign=protos_vue) with Segment and edit the snippet in [index.html](https://github.com/segmentio/analytics-vue/blob/master/public/index.html#L11) to replace `YOUR_WRITE_KEY` with your Segment **Write Key**.
-    > **Tip!** You can find your key in your project setup guide or settings in the Segment.
-
-    Your snippet will look something like the example below.
-
-    ```html
-    <script type="text/javascript">
-      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
-      analytics.load("YOUR_WRITE_KEY");
-      }}();
-    </script>
-    ```
-
-2. From the command line, use `npm install` to install the dependencies, then `npm start` to run the app.
-    ```bash
-    npm install
-    npm start
-    ```
-
-3. Go to the Segment site, and in the Debugger look at the live events being triggered in your app. You should see the following:
-    - Page event: `Home` - When someone views the `home` page.
-    - Page event: `About` - When someone views the `about` page.
-    - Track event: `Learn Vue Link Clicked` - When someone clicks the "Learn Vue" link.
-
-Congrats! You're seeing live data from your demo Vue app in Segment! 🎉
-
 # 🔌 Installing on Your App
-Okay, the demo app is cool, but how do I get this in my own Vue app? Follow the steps below.
+How do you get this in your own Vue app? Follow the steps below.
 
 ## ✂️ Step 1: Copy the Snippet
 To install Segment in your own app first [sign up](https://app.segment.com/signup?utm_source=github&utm_medium=click&utm_campaign=protos_vue) with Segment and locate your Segment project's **Write Key**.
@@ -357,6 +328,35 @@ Examples of data warehouses include Amazon Redshift, Google BigQuery, MySQL, and
 <div align="center">
   <img src="https://user-images.githubusercontent.com/16131737/52022132-6a6cc980-24ac-11e9-8e09-8606531a5dc7.gif"/>
 </div>
+
+## 📺 <span name="demo">Demo</span>
+To start with this demo app, follow the instructions below:
+
+1. [Sign up](https://app.segment.com/signup?utm_source=github&utm_medium=click&utm_campaign=protos_vue) with Segment and edit the snippet in [index.html](https://github.com/segmentio/analytics-vue/blob/master/public/index.html#L11) to replace `YOUR_WRITE_KEY` with your Segment **Write Key**.
+    > **Tip!** You can find your key in your project setup guide or settings in the Segment.
+
+    Your snippet will look something like the example below.
+
+    ```html
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
+      analytics.load("YOUR_WRITE_KEY");
+      }}();
+    </script>
+    ```
+
+2. From the command line, use `npm install` to install the dependencies, then `npm start` to run the app.
+    ```bash
+    npm install
+    npm start
+    ```
+
+3. Go to the Segment site, and in the Debugger look at the live events being triggered in your app. You should see the following:
+    - Page event: `Home` - When someone views the `home` page.
+    - Page event: `About` - When someone views the `about` page.
+    - Track event: `Learn Vue Link Clicked` - When someone clicks the "Learn Vue" link.
+
+Congrats! You're seeing live data from your demo Vue app in Segment! 🎉
 
 ## 📝 Docs & Feedback
 Check out our full [Analytics.js reference](https://segment.com/docs/sources/website/analytics.js?utm_source=github&utm_medium=click&utm_campaign=protos_vue) to see what else is possible, or read about the [Tracking API methods](https://segment.com/docs/sources/server/http?utm_source=github&utm_medium=click&utm_campaign=protos_vue) to get a sense for the bigger picture. If you have any questions, or see anywhere we can improve our documentation, [let us know](https://segment.com/contact?utm_source=github&utm_medium=click&utm_campaign=protos_vue)!
