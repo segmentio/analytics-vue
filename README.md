@@ -105,6 +105,41 @@ export default {
 </script>
 ```
 
+Or betterstill just hook into VueRouter afterEach Lifecycle, and negate the need to set the page on each component
+
+
+```js
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+import Dashboard from '@/Dashboard.vue';
+import About from '@/About.vue';
+
+Vue.use(VueRouter)
+
+const router = new VueRouter({
+ routes: [
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
+    }
+  ]
+});
+
+router.afterEach((to) => {
+  //window.analytics.page(to.name) // if you prefer Name
+  window.analytics.page(to.fullPath)
+});
+
+export default router;
+```
+
 ## 🔍 Step 3: Identify Users
 The `identify` method is how you tell Segment who the current user is. It includes a unique User ID and any optional traits you can pass on about them. You can read more about this in the [identify reference](https://segment.com/docs/sources/website/analytics.js/#identify?utm_source=github&utm_medium=click&utm_campaign=protos_vue).
 
