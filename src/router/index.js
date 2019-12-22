@@ -5,7 +5,7 @@ import About from '@/components/About'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -19,3 +19,9 @@ export default new Router({
     }
   ]
 })
+
+router.afterEach((to) => {
+  window.analytics.page(to.fullPath)
+});
+
+export default router;
