@@ -9,10 +9,7 @@
 
 <script>
 export default {
-  name: 'About',
-  mounted () {
-    window.analytics.page('About')
-  }
+  name: 'About'
 }
 </script>
 
