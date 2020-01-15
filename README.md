@@ -155,7 +155,7 @@ export default {
 > **Tip!** Other handlers might be better for other situations. You can see the [Vue docs on event handlers](https://vuejs.org/v2/guide/events.html) for more information.
 
 ## ⏰ Step 4: Track Actions
-The `track` method is how you tell Segment about which actions your users are performing on your site. Every action triggers what we call an "event", which can also have associated properties. It is important to figure out exactly what events you want to `track` instead of tracking anything and everything. A good way to do this is to build a [tracking plan](https://segment.com/docs/guides/sources/can-i-see-an-example-of-a-tracking-plan?utm_source=github&utm_medium=click&utm_campaign=protos_vue). You can read more about `track` in the [track reference](https://segment.com/docs/sources/website/analytics.js/#track?utm_source=github&utm_medium=click&utm_campaign=protos_vue).
+The `track` method is how you tell Segment about which actions your users are performing on your site. Every action triggers what we call an "event", which can also have associated properties. It is important to figure out exactly what events you want to `track` instead of tracking anything and everything. A good way to do this is to build a [tracking plan](https://segment.com/academy/collecting-data/how-to-create-a-tracking-plan/?utm_source=github&utm_medium=click&utm_campaign=protos_vue). You can read more about `track` in the [track reference](https://segment.com/docs/sources/website/analytics.js/#track?utm_source=github&utm_medium=click&utm_campaign=protos_vue).
 
 Here's what a call to `track` might look like when a user bookmarks an article:
 
