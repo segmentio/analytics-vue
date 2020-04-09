@@ -7,5 +7,18 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm run lint 
+      - run: npm run lint
       - run: npm run build
+      - run:
+          name: Snyk
+          command: curl -sL https://raw.githubusercontent.com/segmentio/snyk_helpers/master/initialization/snyk.sh | sh
+          environment:
+            SNYK_FAIL_ON: upgradable
+            SNYK_SEVERITY_THRESHOLD: high
+
+workflows:
+  version: 2
+  run:
+    jobs:
+      - build:
+          context: snyk
